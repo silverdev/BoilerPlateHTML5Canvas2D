@@ -44,7 +44,7 @@ loadAssets = function(asset_list_url, callback)
 	};
 
 	var ASSET_LOCATIONS = loadJsonSync(asset_list_url);
-
+	console.log(ASSET_LOCATIONS);
 
 	var ASSETS = {};
 	ASSETS.images = {};
@@ -53,8 +53,11 @@ loadAssets = function(asset_list_url, callback)
 	var count = 0;
 	onload = function() {
 		count++;
+		console.log("test");
+		console.log(count);
+		console.log(ASSET_LOCATIONS.length);
 		//this happens more than it should, idk if problem
-		if (count >= ASSET_LOCATIONS.length)
+		if (count === ASSET_LOCATIONS.length)
 		{
 			callback();
 		}

@@ -20,3 +20,9 @@ Similarly to add images and audio elements, you can add them to the /images/ and
 
 respectively. Make sure that you keep assets.json a valid json file.
 
+If you want to add mouse or keyboard controls, create functions to handle the input and register them to the input you want by adding event listeners in the init function. Add any other initialization code in the init function.
+
+The update function is executed every frame. Add any game logic there.
+The render function is also executed every frame. Render everything you want to see there.
+
+
