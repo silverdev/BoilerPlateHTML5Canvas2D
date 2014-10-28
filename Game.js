@@ -14,7 +14,6 @@ function init()
 	context = canvas.getContext('2d');
 	requestAnimationFrame(frame);
 
-	console.log("test");
 }
 
 function frame()
