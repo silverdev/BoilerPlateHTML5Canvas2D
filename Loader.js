@@ -77,6 +77,11 @@ loadAssets = function(asset_list_url, callback)
 		}
 	}
 
+	if(ASSET_LOCATIONS.length === 0)
+	{
+		callback();
+	}
+
 	return ASSETS;
 };
 

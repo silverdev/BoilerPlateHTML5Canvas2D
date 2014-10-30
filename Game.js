@@ -13,7 +13,6 @@ function init()
 	canvas = document.getElementById("MainCanvas");
 	context = canvas.getContext('2d');
 	requestAnimationFrame(frame);
-
 }
 
 function frame()
@@ -21,7 +20,6 @@ function frame()
 	update();
 	render();
 	requestAnimationFrame(frame);
-
 }
 
 function update()
@@ -34,4 +32,4 @@ function render()
 
 }
 
-start();
+window.onload = start;
