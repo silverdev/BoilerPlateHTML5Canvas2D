@@ -1,6 +1,6 @@
 
-var MAPHEIGHT = 20
-var MAPWIDTH = 35
+var MAPHEIGHT = 10
+var MAPWIDTH = 10
 
 function render_empty_cell(x, y)
 {
@@ -36,6 +36,7 @@ function setup_grid(){
     for (var i = 1; i < MAPWIDTH; i++){
         grid[i][MAPHEIGHT] = 11;
     }
+
 
     return grid;
 }
@@ -80,7 +81,7 @@ function merge_tiles(grid){
         for(var w = 0; w < MAPWIDTH; w++)
         {
             // if I have a tile and it can merge merge it.
-            if (grid[w][h] != -1 && grid[w][h] >= grid[w][h+1]){
+            if (grid[w][h] != -1 && grid[w][h+1] != -1 && grid[w][h] >= grid[w][h+1]){
                 change = true;
                 grid[w][h+1] = (grid[w][h] + grid[w][h+1]) % 10
                 grid[w][h] = -1
@@ -137,15 +138,16 @@ function drop_tiles(grid){
 // returns false if the game state can't be updataed because the game is over.
 Grid.prototype.update = function()
 {
-    this.g[3][3] = 5;
 
-    // var new_grid = this.g.map(function (a, _) {return a.slice()})
-    // while(drop_tiles(new_grid) && merge_tiles(new_grid))
-    // {
-    //     console.log("drop and merge")
-    // }
+    this.g[3][3] = 1;
+    console.log("turn")
+    var new_grid = this.g.map(function (a, _) {return a.slice()})
+    while(drop_tiles(new_grid) && merge_tiles(new_grid))
+    {
+        console.log("drop and merge")
+    }
 
-    // this.g = new_grid;
+    this.g = new_grid;
 
     this.makeBlocks();
 
