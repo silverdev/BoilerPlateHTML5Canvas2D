@@ -1,7 +1,7 @@
 
 var canvas;
 var context;
-var game;
+var game = {};
 
 
 function start()

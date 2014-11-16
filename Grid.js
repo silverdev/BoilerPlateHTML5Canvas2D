@@ -24,8 +24,8 @@ function negitive_ones(dimensions) {
 }
 
 function setup_grid(){
-    grid = negitive_ones([MAPWIDTH, MAPHEIGHT + 1]) // extra row for base case.
-    for (var i = 1, i < MAPWIDTH; i++){
+    var grid = negitive_ones([MAPWIDTH, MAPHEIGHT + 1]) // extra row for base case.
+    for (var i = 1; i < MAPWIDTH; i++){
         grid[i][MAPHEIGHT] = 11;
     }
 
@@ -35,12 +35,18 @@ function setup_grid(){
 function Grid()
 {
     this.g = setup_grid();
+    this.width = MAPWIDTH;
+    this.height = MAPHEIGHT;
+    this.blocks = [];
+    this.num_blocks = 0;
     this.top_row = getRandomArray(MAPWIDTH);
 }
 
 Grid.prototype.render = function()
 {
-
+    for (var i = 0; i < this.blocks.length; i++) {
+        this.blocks[i].render();
+    }
 }
 
 function game_over(grid){
@@ -112,14 +118,45 @@ function drop_tiles(grid){
 // returns false if the game state can't be updataed because the game is over.
 Grid.prototype.update = function()
 {
+    this.g[3][3] = 5;
+
     var new_grid = this.g.map(function (a, _) {return a.slice()})
     while(drop_tiles(new_grid) && merge_tiles(new_grid));
 
     this.g = new_grid;
+
+    this.makeBlocks();
 
     if (game_over(this.g)){
         return false;
     }
 
     return true;
+}
+
+Grid.prototype.makeBlocks = function()
+{
+    var new_blocks = [];
+    var i = 0;
+
+    for(x = 0; x < this.width; x++)
+    {
+        for(y = 0; y < this.height; y++)
+        {
+            if(this.g[x][y] != -1)
+            {
+                if(i < this.blocks.length - 1)
+                {
+                    new_blocks.push(this.blocks[i].remake(x, y, this.g[x][y]));
+                }
+                else
+                {
+                    new_blocks.push(new Block(x, y, this.g[x][y]));
+                }
+                i++;
+            }
+        }
+    }
+    this.blocks = new_blocks;
+    this.num_blocks = this.blocks.length;
 }

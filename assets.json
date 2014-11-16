@@ -1,1 +1,14 @@
-[]
+[
+	{"name" : "0", "type" : "image"},
+	{"name" : "1", "type" : "image"},
+	{"name" : "2", "type" : "image"},
+	{"name" : "3", "type" : "image"},
+	{"name" : "4", "type" : "image"},
+	{"name" : "5", "type" : "image"},
+	{"name" : "6", "type" : "image"},
+	{"name" : "7", "type" : "image"},
+	{"name" : "8", "type" : "image"},
+	{"name" : "9", "type" : "image"},
+	{"name" : "x", "type" : "image"},
+	{"name" : "empty_cell", "type" : "image"}
+]
