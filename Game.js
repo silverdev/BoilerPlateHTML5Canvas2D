@@ -16,7 +16,41 @@ function init()
     requestAnimationFrame(frame);
     game.grid = new Grid()
 
+    document.documentElement.addEventListener('keydown', keyDown, false);
+    document.documentElement.addEventListener('keyup', keyUp, false);
 
+}
+
+function keyDown(event)
+{
+    if(event.keyCode == 38)
+    {
+        G.K.up = true;
+    }
+    if(event.keyCode == 39)
+    {
+        G.K.right = true;
+    }
+    if(event.keyCode == 37)
+    {
+        G.K.left = true;
+    }
+}
+
+function keyUp(event)
+{
+    if(event.keyCode == 38)
+    {
+        G.K.up = false;
+    }
+    if(event.keyCode == 39)
+    {
+        G.K.right = false;
+    }
+    if(event.keyCode == 37)
+    {
+        G.K.left = false;
+    }
 }
 
 function frame()
