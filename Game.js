@@ -23,33 +23,33 @@ function init()
 
 function keyDown(event)
 {
-    if(event.keyCode == 38)
+    if(event.keyCode == 32)
     {
-        G.K.up = true;
+        //Spacebar
     }
     if(event.keyCode == 39)
     {
-        G.K.right = true;
+        //right
     }
     if(event.keyCode == 37)
     {
-        G.K.left = true;
+        //left
     }
 }
 
 function keyUp(event)
 {
-    if(event.keyCode == 38)
+    if(event.keyCode == 32)
     {
-        G.K.up = false;
+        //Spacebar
     }
     if(event.keyCode == 39)
     {
-        G.K.right = false;
+        //right
     }
     if(event.keyCode == 37)
     {
-        G.K.left = false;
+        //left
     }
 }
 

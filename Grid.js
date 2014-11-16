@@ -2,9 +2,12 @@
 var MAPHEIGHT = 20
 var MAPWIDTH = 35
 
-function render_empty_cell()
+function render_empty_cell(x, y)
 {
-    
+    context.save();
+    translate_via_grid(x, y);
+    context.drawImage(ASSETS.images["empty_cell"], 0, 0);
+    context.restore();
 }
 
 function getRandomArray(size)
@@ -49,15 +52,15 @@ function Grid()
 
 Grid.prototype.render = function()
 {
-    for (var i = 0; i < this.blocks.length; i++) {
-        this.blocks[i].render();
-    }
     for(x = 0; x < this.width; x++)
     {
         for(y = 0; y < this.height; y++)
         {
             render_empty_cell(x, y);
         }
+    }
+    for (var i = 0; i < this.blocks.length; i++) {
+        this.blocks[i].render();
     }
 }
 
