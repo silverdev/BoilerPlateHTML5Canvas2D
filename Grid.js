@@ -2,6 +2,11 @@
 var MAPHEIGHT = 20
 var MAPWIDTH = 35
 
+function render_empty_cell()
+{
+    
+}
+
 function getRandomArray(size)
 {
     var array = [];
@@ -46,6 +51,13 @@ Grid.prototype.render = function()
 {
     for (var i = 0; i < this.blocks.length; i++) {
         this.blocks[i].render();
+    }
+    for(x = 0; x < this.width; x++)
+    {
+        for(y = 0; y < this.height; y++)
+        {
+            render_empty_cell(x, y);
+        }
     }
 }
 
@@ -124,13 +136,13 @@ Grid.prototype.update = function()
 {
     this.g[3][3] = 5;
 
-    var new_grid = this.g.map(function (a, _) {return a.slice()})
-    while(drop_tiles(new_grid) && merge_tiles(new_grid))
-    {
-        console.log("drop and merge")
-    }
+    // var new_grid = this.g.map(function (a, _) {return a.slice()})
+    // while(drop_tiles(new_grid) && merge_tiles(new_grid))
+    // {
+    //     console.log("drop and merge")
+    // }
 
-    this.g = new_grid;
+    // this.g = new_grid;
 
     this.makeBlocks();
 
@@ -152,14 +164,14 @@ Grid.prototype.makeBlocks = function()
         {
             if(this.g[x][y] != -1)
             {
-                if(i < this.blocks.length - 1)
-                {
-                    new_blocks.push(this.blocks[i].remake(x, y, this.g[x][y]));
-                }
-                else
-                {
+                // if(i < this.blocks.length - 1)
+                // {
+                //     new_blocks.push(this.blocks[i].remake(x, y, this.g[x][y]));
+                // }
+                // else
+                // {
                     new_blocks.push(new Block(x, y, this.g[x][y]));
-                }
+                // }
                 i++;
             }
         }
