@@ -62,9 +62,10 @@ function merge_tiles(grid){
   var change = false;
   for(var h = 0; h < MAPHEIGHT; h++)
     {
-        for(var w = 0; 0 < MAPWIDTH; w++)
+        for(var w = 0; w < MAPWIDTH; w++)
         {
-            if (grid[w][h] >= grid[w][h+1]){
+            // if I have a tile and it can merge merge it.
+            if (grid[w][h] != -1 && grid[w][h] >= grid[w][h+1]){
                 change = true;
                 grid[w][h+1] = (grid[w][h] + grid[w][h+1]) % 10
                 grid[w][h] = -1
@@ -76,7 +77,8 @@ function merge_tiles(grid){
   return change
 }
 
-function can_tile_drop(x,y, grid){
+function can_tile_drop(w,h, grid){
+
     //if the space is empty ignore it!
     if(grid[w][h] == -1){
         return false
@@ -99,9 +101,10 @@ function can_tile_drop(x,y, grid){
 // returns false if nothing changes
 function drop_tiles(grid){
     var change = false;
+
     for(var h = 0; h < MAPHEIGHT; h++)
     {
-        for(var w = 0; 0 < MAPWIDTH; w++)
+        for(var w = 0; w < MAPWIDTH; w++)
         {
             if (can_tile_drop(w, h, grid)){
                 change = true;
@@ -112,6 +115,7 @@ function drop_tiles(grid){
         }
 
     }
+
     return change
 }
 
@@ -121,7 +125,10 @@ Grid.prototype.update = function()
     this.g[3][3] = 5;
 
     var new_grid = this.g.map(function (a, _) {return a.slice()})
-    while(drop_tiles(new_grid) && merge_tiles(new_grid));
+    while(drop_tiles(new_grid) && merge_tiles(new_grid))
+    {
+        console.log("drop and merge")
+    }
 
     this.g = new_grid;
 
