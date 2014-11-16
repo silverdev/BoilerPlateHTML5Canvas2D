@@ -4,10 +4,12 @@ var MAPWIDTH = 35
 
 function getRandomArray(size)
 {
-    var array = Array.apply(null, Array(size))
-    return array.map(function (_, i){
-        return Math.floor(Math.random() * 10);
-    });
+    var array = [];
+    for(i = 0; i < size; i++)
+    {
+        array.push(Math.floor(Math.random() * 10));
+    }
+    return array;
 }
 
 function negitive_ones(dimensions) {
@@ -24,7 +26,7 @@ function negitive_ones(dimensions) {
 function setup_grid(){
     grid = negitive_ones([MAPWIDTH, MAPHEIGHT + 1]) // extra row for base case.
     for (var i = 1, i < MAPWIDTH; i++){
-        grid[i, MAPHEIGHT] = 11;
+        grid[i][MAPHEIGHT] = 11;
     }
 
     return grid;
